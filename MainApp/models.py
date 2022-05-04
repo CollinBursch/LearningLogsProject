@@ -1,9 +1,12 @@
+from tkinter import CASCADE
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Topic(models.Model):
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 #this defines what we want to return specifically return, user defined, no bs 
     def __str__(self):
@@ -17,7 +20,7 @@ class Entry(models.Model):
 
     class Meta:
         verbose_name_plural = 'entries'
-        
+
 
 
     def __str__(self):
